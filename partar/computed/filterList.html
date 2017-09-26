@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div id="app">
+		<p v-for="country in onlyIceland" v-text="country"></p>
+	</div>
+	<script src="https://unpkg.com/vue"></script>
+	<script type="text/javascript">
+		
+		var app = new Vue({
+			el: "#app",
+			data:{
+				countries: ["Ísland", "Írland", "Írland", "Ísland", "Ísland"]
+			},
+			computed: {
+				onlyIceland: function() {
+					return this.countries.filter(function(country) {
+						return country === "Ísland";
+					});
+				}
+			}
+
+		});
+	</script>
+</body>
+</html>

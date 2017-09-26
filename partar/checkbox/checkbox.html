@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Checkbox</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div id="app">
+		<input type="checkbox" id="checkbox" v-model="check">
+		<label for="checkbox">haka við</label>
+		<p>{{ check }}</p>
+	</div>
+	<script src="https://unpkg.com/vue"></script>
+	<script type="text/javascript">
+		
+		var app = new Vue({
+			el: "#app",
+			data:{
+				check: false
+			}
+
+		});
+	</script>
+</body>
+</html>
