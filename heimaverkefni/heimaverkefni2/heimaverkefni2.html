@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<meta charset="utf-8">
+</head>
+<body>
+	<div class="container" id="app">
+		<section class="panel">
+			<input type="checkbox" id="mark-all">
+			<input type="text" placeholder="what do you need to do?" autofocus class="text-input">
+			<button>Clear list</button>
+		</section>
+		<ul class="list">
+			<li>
+				<input type="checkbox" class="checkbox">
+				<input type="text" class="text-input">
+				<label for="checkbox"></label>
+				<button class="delete">X</button>
+			</li>
+		</ul>
+		<pre>{{ $data }}</pre>
+	</div>
+	<script src="https://unpkg.com/vue"></script>
+	<script type="text/javascript">
+
+		var app = new Vue({
+			el: "#app",
+			data:{
+
+			},
+			methods: {
+
+			}
+		});
+	</script>
+</body>
+</html>
+
+<!-- kominn Feature 1 - Add a to-do item and display it on the page -->
