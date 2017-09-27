@@ -9,15 +9,14 @@
 	<div class="container" id="app">
 		<section class="panel">
 			<input type="checkbox" id="mark-all">
-			<input type="text" placeholder="what do you need to do?" autofocus class="text-input">
-			<button>Clear list</button>
+			<input type="text" placeholder="what do you need to do?" autofocus class="text-input" v-model="newTask" v-on:keyup.enter="addTask">
+			<button v-on:click="clearList">Clear list</button>
 		</section>
 		<ul class="list">
-			<li>
+			<li v-for="task in taskList">
 				<input type="checkbox" class="checkbox">
-				<input type="text" class="text-input">
-				<label for="checkbox"></label>
-				<button class="delete">X</button>
+				<label for="checkbox">{{ task.text }}</label>
+				<button class="delete" v-on:click="removeTask(task)">X</button>
 			</li>
 		</ul>
 		<pre>{{ $data }}</pre>
@@ -28,14 +27,31 @@
 		var app = new Vue({
 			el: "#app",
 			data:{
-
+				newTask: "",
+				taskList: []
 			},
 			methods: {
-
+				addTask: function() {
+					var task = this.newTask.trim();
+					if (task){
+						this.taskList.push({
+							text: task,
+							checked:false
+						});
+						this.newTask = "";
+					}
+				},
+				removeTask: function(task) {
+					var index = this.taskList.indexOf(task);
+					this.taskList.splice(index, 1);
+				},
+				clearList: function() {
+					this.taskList = [];
+				}
 			}
 		});
 	</script>
 </body>
 </html>
 
-<!-- kominn Feature 1 - Add a to-do item and display it on the page -->
+<!-- kominn Feature 4 - Mark a single item as completed -->
