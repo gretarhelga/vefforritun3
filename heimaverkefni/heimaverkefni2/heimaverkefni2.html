@@ -7,18 +7,21 @@
 </head>
 <body>
 	<div class="container" id="app">
+
 		<section class="panel">
-			<input type="checkbox" id="mark-all">
+			<input type="checkbox" id="mark-all" v-bind:checked="areAllSelected" v-on:click="selectAll">
 			<input type="text" placeholder="what do you need to do?" autofocus class="text-input" v-model="newTask" v-on:keyup.enter="addTask">
 			<button v-on:click="clearList">Clear list</button>
 		</section>
+
 		<ul class="list">
-			<li v-for="task in taskList">
-				<input type="checkbox" class="checkbox">
+			<li v-for="task in taskList" v-bind:class="{done: task.checked}">
+				<input type="checkbox" class="checkbox" v-model="task.checked">
 				<label for="checkbox">{{ task.text }}</label>
 				<button class="delete" v-on:click="removeTask(task)">X</button>
 			</li>
 		</ul>
+
 		<pre>{{ $data }}</pre>
 	</div>
 	<script src="https://unpkg.com/vue"></script>
@@ -29,6 +32,13 @@
 			data:{
 				newTask: "",
 				taskList: []
+			},
+			computed: {
+				areAllSelected: function() {
+					return this.taskList.every(function(task) {
+						return task.checked;
+					}) && this.taskList.length > 0;
+				},
 			},
 			methods: {
 				addTask: function() {
@@ -47,6 +57,12 @@
 				},
 				clearList: function() {
 					this.taskList = [];
+				},
+				selectAll: function(task) {
+					var targetValue = this.areAllSelected ? false : true;
+					for (var i = 0; i < this.taskList.lenth; i++) {
+						this.taskList[i].checked = targetValue;
+					}
 				}
 			}
 		});
@@ -54,4 +70,3 @@
 </body>
 </html>
 
-<!-- kominn Feature 4 - Mark a single item as completed -->
