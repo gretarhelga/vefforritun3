@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		.red{
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<my-component></my-component>
+	</div>
+	<script src="https://unpkg.com/vue"></script>
+	<script type="text/javascript">
+		Vue.component("my-component", {
+			template: `
+			<div class="red">
+				<div>My custon component</div>
+				<h1>My custon heading</h1>
+			</div>`
+		});
+		var app = new Vue({
+			el: "#app"
+		});
+	</script>
+</body>
+</html>
