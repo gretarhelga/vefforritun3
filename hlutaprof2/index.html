@@ -7,16 +7,31 @@
 </head>
 <body>
 	<div class="columns">
-		<div class="column is-4 is-offset-4">
-	<div id="app">
+		<div class="column is-8 is-offset-2">
+			<div id="app">
 
-		<tabs></tabs>
-		<eg image="https://bulma.io/images/placeholders/480x320.png" nafn="Grétar Helgason"></eg>
-		<message>Læra fyir próf</message>
-		<message>Klára heimavinnu</message>
+				<tabs>
+					<tab name="Ég" :selected="true">
+						<eg mynd="https://bulma.io/images/placeholders/480x320.png" nafn="Grétar Helgason"></eg>
+					</tab>
 
-	</div>
-	</div>
+					<tab name="Verkefni">
+						<h1 class="has-text-centered is-size-3">Verkefni</h1>
+						<message>Læra fyir próf</message>
+						<message>Klára heimavinnu</message>
+					</tab>
+
+					<tab name="Hafa samband">
+						<h1 class="has-text-centered is-size-3">Hafa samband</h1>
+						<formid></formid>
+					</tab>
+
+					<tab name="Eitthvað skemmtilegt">
+						<h1 class="has-text-centered is-size-3">Eitthvað skemmtilegt</h1>
+					</tab>
+				</tabs>
+			</div>
+		</div>
 	</div>
 
 	<script src="https://unpkg.com/vue"></script>
