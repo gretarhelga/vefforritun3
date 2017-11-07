@@ -2,7 +2,7 @@ Vue.component("tabs", {
 	props: [],
 	template:`
 		<div>
-			<div class="tabs is-centered">
+			<div class="tabs is-centered" style="margin-top:20px;">
 				<ul>
 				    <li v-for="tab in tabs" :class="{ 'is-active': tab.isActive }">
 				   		<a :href="tab.href" @click="selectTab(tab)">{{ tab.name }}</a>
@@ -57,11 +57,11 @@ Vue.component("eg", {
 	template:`
 		<div>
         	<div class="is-centered">
-		        <figure class="image is-480x320">
+		        <figure class="image is-4by3">
 		        	<img :src="mynd">
 		        </figure>
 	        	</div>
-	        		<p class="has-text-centered is-size-4">{{ nafn }}</p>
+	        		<p class="has-text-centered is-size-4" style="margin-top:20px;">{{ nafn }}</p>
 	        	</div>
 	        </div>
         </div>
@@ -99,7 +99,7 @@ Vue.component("formid", {
 		</div>
 	`
 });
-Vue.component("modal", {
+Vue.component("ffacts", {
 	props: ["title"],
 	data: function() {
 		return {
@@ -115,21 +115,28 @@ Vue.component("modal", {
 		}
 	},
 	template: `
-	<div>
-		<div v-show="isVisible" class="modal is-active">
-			<div class="modal-background" @click="hideModal"></div>
-			<div class="modal-content">
-				<div class="box">
-					<h1 class="title is-4">{{ title }}</h1>
-					<p><slot></slot></p>
+		<div>
+			<div v-show="isVisible" class="modal is-active">
+				<div class="modal-background" @click="hideModal"></div>
+				<div class="modal-content">
+					<div class="box">
+						<h1 class="title is-4">{{ title }}</h1>
+						<p><slot></slot></p>
+					</div>
 				</div>
+				<button class="modal-close is-large" aria-label="close" @click="hideModal"></button>
 			</div>
-			<button class="modal-close is-large" aria-label="close" @click="hideModal"></button>
+
+			<article class="message" style="margin-bottom:20px;">
+				<div class="message-body">
+					<div>
+						<div style="display:inline">{{ title }}</div>
+						<button class="button is-info" style="float:right;" @click="showModal">Svar</button>
+					</div>
+				</div>
+			</article>
+
 		</div>
-		<div class="has-text-centered">
-		<button class="button is-primary" @click="showModal">{{ title }}</button>
-		</div>
-	</div>
 `
 });
 var app = new Vue({
