@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <div class="column is-6 is-offset-3">
-      <input   class="input is-primary" v-model.number="maxBensinVerd" type="number">
+      <input type="radio" id="orkan" v-model="stations">
+      <label for="orkan">Orkan</label>
+
+
+
       <div class="box" v-for="petrol in sortedStations">
         <h3 class="title is-4">{{ petrol.company }}</h3>
         <h4 class="title is-6">Staðsetning: {{ petrol.name }}</h4>
@@ -20,7 +24,7 @@ export default {
   data () {
     return {
       petrols: [],
-      maxBensinVerd: 180
+      stations: []
     };
   },
   computed: {
@@ -28,13 +32,15 @@ export default {
       var sorted = this.petrols.sort(function(a, b) {
         return a.bensin95 - b.bensin95;
       });
-      sorted = sorted.filter(function(petrol) {
-        return petrol.bensin95 < this.maxBensinVerd;
-      }.bind(this));
-
       return sorted;
-
+    },
+    filterStations() {
+      return this.stations.filter(petrol => {
+        
+      })
     }
+
+
   },
   mounted() {
     var self = this;
