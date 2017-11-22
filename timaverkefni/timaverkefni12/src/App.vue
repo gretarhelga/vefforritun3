@@ -35,9 +35,16 @@ export default {
       return sorted;
     },
     filterStations() {
-      return this.stations.filter(petrol => {
-        
-      })
+      var self = this;
+      var filterd self.stations.filter(function(station){
+        if(station === petrol.company){
+          return true;
+        }
+        else(station !== petrol.company){
+          return false;
+        }
+      });
+
     }
 
 
