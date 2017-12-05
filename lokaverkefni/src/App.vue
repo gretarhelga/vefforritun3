@@ -1,7 +1,11 @@
 <template>
   <div id="app">
 
-    <!-- <input type="text" v-model="postTask"> -->
+    <form method="POST" @submit.prevent="onSubmit">
+      <input type="text" v-model="postTask">
+      <button type="submit">Submit</button>
+    </form>
+
 
     <div v-for="task in tasks">
       <h3 class="title is-4" >{{ task.title }}</h3>
@@ -18,7 +22,7 @@ export default {
   data () {
     return {
       tasks: [],
-      postTask: []
+      postTask: ""
     };
   },
   mounted() {
@@ -32,15 +36,22 @@ export default {
             console.log(error);
          });
   },
-/*axios.post('http://fjolbraut.org/api/tasks?api_token=ZHffILpaLtT75Hw9CSBtiHYWYpBxS7F31k88ctOzAOpMXjFkMJZxgeDLRNAj', {
-            title: self.postTask
-         })
-         .then(function(response) {
-            console.log(response);
-         })
-         .catch(function(error) {
-            console.log(error);
-         });    */
+  methods: {
+    onSubmit(){
+      var self = this;
+      axios.post('http://fjolbraut.org/api/tasks?api_token=ZHffILpaLtT75Hw9CSBtiHYWYpBxS7F31k88ctOzAOpMXjFkMJZxgeDLRNAj', {
+              title: self.postTask
+           })
+           .then(function(response) {
+              console.log(response);
+              location.reload();
+           })
+           .catch(function(error) {
+              console.log(error);
+           });
+    }
+  }
+
 }
 </script>
 
