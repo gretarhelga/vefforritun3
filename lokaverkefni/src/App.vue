@@ -6,11 +6,17 @@
       <button type="submit">Submit</button>
     </form>
 
+    <form method="POST">
+      <div v-for="task in tasks">
+        <input type="checkbox" v-model="task.completed" @click.prevent="TaskCheckbox">
+        <label for="checkbox" class="title is-4" v-bind:class="{ taskDone: task.completed }" >{{ task.title }}</label>
+        <p>{{ task.created }}</p>
+        <p>{{ task.id }}</p>
+        <br><br>
+      </div>
+    </form>
 
-    <div v-for="task in tasks">
-      <h3 class="title is-4" >{{ task.title }}</h3>
-      <p>{{ task.created }}</p><br><br>
-    </div>
+
   </div>
 </template>
 
@@ -49,12 +55,28 @@ export default {
            .catch(function(error) {
               console.log(error);
            });
+    },
+    TaskCheckbox(){
+      var self = this;
+      var id = 644;
+      axios.post('http://fjolbraut.org/api/tasks/' + id + '/status?api_token=ZHffILpaLtT75Hw9CSBtiHYWYpBxS7F31k88ctOzAOpMXjFkMJZxgeDLRNAj')
+          .then(function(response) {
+              console.log(response);
+              location.reload();
+          })
+          .catch(function(error) {
+              console.log(error);
+           });
     }
+
   }
 
 }
 </script>
 
 <style>
-
+.taskDone {
+  text-decoration: line-through;
+  color: #787878;
+}
 </style>
