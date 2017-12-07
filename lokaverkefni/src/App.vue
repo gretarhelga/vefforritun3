@@ -1,20 +1,38 @@
 <template>
   <div id="app">
 
-    <form method="POST" @submit.prevent="onSubmit">
-      <input type="text" v-model="postTask">
-      <button type="submit">Submit</button>
-    </form>
+    <div class="columns">
+      <div class="column is-4 is-offset-4" style="background-color: white;margin-top:25px;">
 
-    <form method="POST">
-      <div v-for="task in tasks">
-        <input type="checkbox" v-model="task.completed" @click.prevent="TaskCheckbox(task.id)">
-        <label for="checkbox" class="title is-4" v-bind:class="{ taskDone: task.completed }" >{{ task.title }}</label>
-        <p>{{ task.created }}</p>
-        <p>{{ task.id }}</p>
-        <br><br>
+          <form method="POST" @submit.prevent="onSubmit" style="padding:10px;">
+            <div class="field is-grouped">
+              <div class="control is-expanded">
+                <input type="text" v-model="postTask" class="input" placeholder="Add task">
+              </div>
+              <div class="control">
+                <button type="submit" class="button is-info">Submit</button>
+              </div>
+            </div>
+            <hr>
+          </form>
+
+        <form method="POST">
+          <div v-for="task in tasks">
+            <div class="field is-grouped">
+              <div class="checkbox control is-expanded">
+                <input type="checkbox" v-model="task.completed" @click.prevent="TaskCheckbox(task.id)">
+                <label for="checkbox" class="title is-4" v-bind:class="{ taskDone: task.completed }" >{{ task.title }}</label>
+              </div>
+              <div class="control">
+                <p style="margin-top:3px;">({{ task.created }})</p>
+              </div>
+            </div>
+            <hr>
+          </div>
+        </form>
+
       </div>
-    </form>
+    </div>
 
 
   </div>
@@ -73,9 +91,17 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import '~bulma/bulma';
 .taskDone {
   text-decoration: line-through;
   color: #787878;
+}
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  background-color: #DCDCDC;
 }
 </style>
